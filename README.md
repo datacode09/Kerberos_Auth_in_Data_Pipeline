@@ -10,7 +10,7 @@ The same shell script then calls a Python script to perform further operations.
 # Step 2: Prepare the Python Kerberos Authentication Function
 Ensure your Python function for Kerberos authentication with retry is robust. Here's a simple template of what this function might look like using the kerberos module:
 
-'''
+```
 import kerberos
 import time
 
@@ -27,13 +27,13 @@ def kerberos_auth_with_retry(principal, keytab, retries=3, delay=5):
             time.sleep(delay)
     print("Kerberos authentication failed after retries.")
     return False
-'''
+```
 # Step 3: Modify Your Existing Shell Script
 You don’t need to completely overhaul your existing setup. Instead, integrate the call to the Python Kerberos authentication function within the existing shell script. Here’s how you could adjust the shell script:
 
 Source the Variables File: Continue to source your variables file as you currently do to set up any environment variables necessary for your application.
 Invoke Python for Kerberos Authentication: Before running the main Python script, add a new Python invocation that specifically handles Kerberos authentication.Modify your shell script like this:
-'''
+```
 # Source environment variables
 source /path/to/your/variables_file.sh
 
@@ -42,9 +42,9 @@ python -c 'import your_authentication_module; your_authentication_module.kerbero
 
 # Existing Python script call
 python /path/to/your/existing_script.py
-'''
+```
 Handle Authentication Failure: Optionally, you can modify the script to handle the case where authentication fails, preventing the main Python script from running.
-Step 4: Test the Modified Setup
+# Step 4: Test the Modified Setup
 Thoroughly test the updated workflow to ensure:
 
 The Kerberos authentication step completes successfully and retries as expected upon failure.
